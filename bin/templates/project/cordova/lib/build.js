@@ -18,7 +18,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
- 
+
 var path    = require('path'),
     fs      = require('fs'),
     shjs    = require('shelljs'),
@@ -48,11 +48,13 @@ module.exports.run = function(){
         if (!fs.existsSync(platformBuildDir)) {
             fs.mkdirSync(platformBuildDir);
         }
-
+          console.log('platformWwwDir', platformWwwDir);
+          console.log('platofmrBuildDir', platformBuildDir);
+          shjs.cp('-Rf', platformWwwDir + '/.', platformBuildDir)
         // add the project to a zipfile
-        var zipFile = zip();
-        zipFile.addLocalFolder(platformWwwDir, '.');
-        zipFile.writeZip(packageFile);
+        // var zipFile = zip();
+        // zipFile.addLocalFolder(platformWwwDir, '.');
+        // zipFile.writeZip(packageFile);
 
         return Q.resolve();
 
